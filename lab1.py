@@ -23,3 +23,8 @@ print('{:<50}'.format(tekst))
 print('{:^50}'.format(tekst))
 print('{:*^50}'.format(tekst))
 print('{:^6}'.format(tekst))
+
+
+#zad4
+#print(dir(tekst))
+#help(tekst.isalpha())
