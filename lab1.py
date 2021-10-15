@@ -16,5 +16,10 @@ for i in range(len(a)):
 
 print(f"W tekście jest {liczba_liter1} liter {imie[2]} oraz {liczba_liter2} liter {nazwisko[3]}")
 
-
-
+#zad3
+from zad3_tekst import  tekst
+print('{:_>50}'.format(tekst))
+print('{:<50}'.format(tekst))
+print('{:^50}'.format(tekst))
+print('{:*^50}'.format(tekst))
+print('{:^6}'.format(tekst))
