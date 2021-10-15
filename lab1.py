@@ -43,8 +43,9 @@ skala_nowa = skala[len(skala)//2:]
 print(skala_orginalna)
 print(skala_nowa)
 #zad7
-skala = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-skala.insert(0,0)
-skala1=skala
-skala1.sort(reverse=True)
-print(skala1)
+skala1 = skala_orginalna + skala_nowa
+skala1.insert(0,0)
+kopiaskali1 = skala1
+kopiaskali1.sort(reverse=True)
+print(kopiaskali1)
+#zad11
