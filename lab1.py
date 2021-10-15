@@ -49,3 +49,10 @@ kopiaskali1 = skala1
 kopiaskali1.sort(reverse=True)
 print(kopiaskali1)
 #zad11
+for i in range(11):
+    print(i)
+print("---------------------------------------")
+#zad12
+for i in range(100, 15, -5):
+    print(i)
+
