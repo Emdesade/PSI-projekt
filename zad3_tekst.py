@@ -1,0 +1,1 @@
+tekst = "Lorem ipsum dolor "

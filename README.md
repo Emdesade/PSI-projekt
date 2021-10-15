@@ -1,2 +1,2 @@
 # PSI-projekt
-hello
+01 Wprowadzenie do Python
