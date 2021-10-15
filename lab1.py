@@ -23,3 +23,10 @@ print('{:<50}'.format(tekst))
 print('{:^50}'.format(tekst))
 print('{:*^50}'.format(tekst))
 print('{:^6}'.format(tekst))
+
+
+#zad5
+imie_nazwisko="Drężek Krystian"
+stringlength=len(imie_nazwisko)
+slicedString=imie_nazwisko[stringlength::-1]
+print (slicedString)
