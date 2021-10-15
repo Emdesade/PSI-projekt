@@ -35,3 +35,16 @@ imie_nazwisko="Drężek Krystian"
 stringlength=len(imie_nazwisko)
 slicedString=imie_nazwisko[stringlength::-1]
 print (slicedString)
+
+#zad6
+skala = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+skala_orginalna = skala[:len(skala)//2]
+skala_nowa = skala[len(skala)//2:]
+print(skala_orginalna)
+print(skala_nowa)
+#zad7
+skala = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+skala.insert(0,0)
+skala1=skala
+skala1.sort(reverse=True)
+print(skala1)
