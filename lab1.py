@@ -28,3 +28,10 @@ print('{:^6}'.format(tekst))
 #zad4
 #print(dir(tekst))
 #help(tekst.isalpha())
+
+
+#zad5
+imie_nazwisko="Drężek Krystian"
+stringlength=len(imie_nazwisko)
+slicedString=imie_nazwisko[stringlength::-1]
+print (slicedString)
