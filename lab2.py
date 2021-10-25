@@ -67,6 +67,7 @@ print(f"zad4c: 10`C -> Kelvin: {zad4(10, 'Kelvin')}")
 print(f"zad4d: test_błąd : {zad4(10, 'Delisle ')}")
 print(f"zad4e: test_błąd : {zad4('test', 'Kelvin ')}\n")
 
+
 # zad5
 
 
@@ -74,7 +75,11 @@ print(f"zad4e: test_błąd : {zad4('test', 'Kelvin ')}\n")
 
 
 # zad7
+def zad7(text):
+    return text[::-1]
 
+
+print(f"zad7: {zad7('Może jutro ta dama sama da tortu jeżom')}\n")
 
 # zad8
 
