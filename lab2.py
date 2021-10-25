@@ -35,3 +35,29 @@ def zad2(data_text):
 
 slownikz2 = zad2("Napis Testujacy Dzialanie Funkcji z ZADANIA drugiego")
 print(f"zad2: {slownikz2}\n")
+
+
+# zad3
+def zad3(text, letter):
+    return text.replace(letter, "")
+
+
+textz3 = zad3("AAAAaaaaa to jest Napis Testujacy Dzialanie Funkcji z ZADANIA trzeciego", "a")
+print(f"zad3: {textz3}\n")
+
+# zad4
+
+
+# zad5
+
+
+# zad6
+
+
+# zad7
+
+
+# zad8
+
+
+# zad9
