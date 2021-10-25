@@ -42,7 +42,7 @@ def zad3(text, letter):
     return text.replace(letter, "")
 
 
-textz3 = zad3("zzZzzzzzazzzdzzzznzzzizzzezzzzzzzzz zzz3zzzzzzzz", "z")
+textz3 = zad3("zzZzzzzzazzzdzzzzanzzzizzzezzzzzzzzz zzz3zzzzzzzz", "z")
 print(f"zad3: {textz3}\n")
 
 
