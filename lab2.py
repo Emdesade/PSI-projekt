@@ -1,3 +1,5 @@
+import file_manager
+
 # zad1
 a_list = [x for x in range(155000, 155020)]
 b_list = [x for x in range(166050, 166080, 3)]
@@ -70,31 +72,41 @@ print(f"zad4e: test_błąd : {zad4('test', 'Kelvin ')}\n")
 
 # zad5
 class Calculator(object):
-    def add (self, a,b):
-        self.sum = a+b
+    def add(self, a, b):
+        self.sum = a + b
         return self.sum
-    def difference(self, a,b):
-        self.difference = a-b
+
+    def difference(self, a, b):
+        self.difference = a - b
         return self.difference
-    def multiply(self, a,b):
-        self.multiply = a*b
+
+    def multiply(self, a, b):
+        self.multiply = a * b
         return self.multiply
-    def divide(self, a ,b):
-        self.divide = a/b
+
+    def divide(self, a, b):
+        self.divide = a / b
         return self.divide
 
-kalkulator= Calculator()
-print(kalkulator.add(1,2))
-print(kalkulator.difference(1,2))
-print(kalkulator.multiply(1,2))
-print(kalkulator.divide(1,2))
+
+kalkulator = Calculator()
+print(kalkulator.add(1, 2))
+print(kalkulator.difference(1, 2))
+print(kalkulator.multiply(1, 2))
+print(kalkulator.divide(1, 2))
+
+
 # zad6
 class ScienceCalculator(Calculator):
     def power(self, a, b):
-        self.power = a**b
+        self.power = a ** b
         return self.power
+
+
 kalkulator = ScienceCalculator()
-print(kalkulator.power(2,2))
+print(kalkulator.power(2, 2))
+
+
 # zad7
 def zad7(text):
     return text[::-1]
@@ -103,7 +115,8 @@ def zad7(text):
 print(f"zad7: {zad7('Może jutro ta dama sama da tortu jeżom')}\n")
 
 # zad9
-import file_manager
+
+
 test = file_manager.FileManager("README.md")
 print(test.read_file())
 test.update_file("Testowanie działania funkcji z zadania 9")

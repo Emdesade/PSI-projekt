@@ -1,4 +1,4 @@
-#Zad8
+# Zad8
 
 class FileManager:
     def __init__(self, file_name):
@@ -8,5 +8,5 @@ class FileManager:
         return open(f'{self.file_name}', 'r').read()
 
     def update_file(self, text_data):
-        test = open(self.file_name,'a')
+        test = open(self.file_name, 'a', encoding='utf-8')
         return test.write(f"\n{text_data}")
