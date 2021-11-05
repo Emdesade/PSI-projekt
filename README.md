@@ -1,2 +1,2 @@
 # PSI-projekt
-hello
+# Model bazy danych
