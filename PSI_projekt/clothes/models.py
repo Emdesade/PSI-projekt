@@ -2,6 +2,11 @@ from django.db import models
 
 
 # Create your models here.
+class Cloth_type(models.Model):
+    id_cloth_type = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=45)
+
+
 class Item(models.Model):
     id_item = models.AutoField(primary_key=True)
     size = models.CharField(max_length=45)
@@ -9,11 +14,7 @@ class Item(models.Model):
     price = models.FloatField()
     manufacturer = models.CharField(max_length=45)
     color = models.CharField(max_length=45)
-    cloth_type = models.IntegerField()
-
-
-class Cloth_type(models.Model):
-    id_cloth_type = models.AutoField(primary_key=True)
+    cloth_type = models.ForeignKey(Cloth_type, on_delete=models.CASCADE)
 
 
 class Client(models.Model):
@@ -28,5 +29,5 @@ class Client(models.Model):
 
 class Orders(models.Model):
     id_order = models.AutoField(primary_key=True)
-    id_client = models.IntegerField()
-    id_item = models.IntegerField()
+    id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    id_item = models.ForeignKey(Item, on_delete=models.CASCADE)
