@@ -9,7 +9,9 @@ class Cloth_type(models.Model):
 
 class Item(models.Model):
     id_item = models.AutoField(primary_key=True)
-    size = models.CharField(max_length=45)
+    name = models.CharField(max_length=45)
+    serial_number = models.CharField(max_length=45)
+    size = models.CharField(max_length=10)
     material = models.CharField(max_length=45)
     price = models.FloatField()
     manufacturer = models.CharField(max_length=45)
@@ -24,7 +26,7 @@ class Client(models.Model):
     surname = models.CharField(max_length=45)
     adres = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
-    birh_date = models.CharField(max_length=45)
+    birth_date = models.CharField(max_length=45)
 
 
 class Orders(models.Model):
