@@ -1,1 +1,1 @@
-Master - App v1.0
+LAB 5 SERIALIZACJA
