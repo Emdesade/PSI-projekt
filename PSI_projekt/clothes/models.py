@@ -25,8 +25,8 @@ class Client(models.Model):
     name = models.CharField(max_length=45)
     surname = models.CharField(max_length=45)
     adres = models.CharField(max_length=45)
-    email = models.CharField(max_length=45)
-    birth_date = models.CharField(max_length=45)
+    email = models.EmailField(max_length=254)
+    birth_date = models.DateField(auto_now_add=True, null=False, blank=True)
 
 
 class Orders(models.Model):
