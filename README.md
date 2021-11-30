@@ -1,1 +1,1 @@
-05 Serializacja 
+05 Serializacja danych
