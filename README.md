@@ -1,1 +1,1 @@
-# 05 Serializacja danych
+Master - App v1.0
