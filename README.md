@@ -1,1 +1,1 @@
-LAB 5 SERIALIZACJA
+05 Serializacja 
