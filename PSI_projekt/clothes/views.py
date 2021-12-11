@@ -14,7 +14,9 @@ class RootApi(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         return Response({
-            'items': reverse(ItemList.name, request=request)
+            'items': reverse(ItemList.name, request=request),
+            'clothtype': reverse(ClothTypeList.name, request=request),
+            'client': reverse(ClientList.name, request=request),
         })
 
 
