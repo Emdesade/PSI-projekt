@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Cloth_type, Item, Client
 
+
 class Cloth_typeSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True, max_length=45)
@@ -12,6 +13,7 @@ class Cloth_typeSerializer(serializers.Serializer):
         instance.name = validated_data.get('name', instance.name)
         instance.save()
         return instance
+
 
 class ItemSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -36,6 +38,7 @@ class ItemSerializer(serializers.Serializer):
         instance.color = validated_data.get('color', instance.color)
         instance.save()
         return instance
+
 
 class ClientSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
