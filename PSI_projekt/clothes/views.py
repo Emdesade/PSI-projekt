@@ -1,7 +1,7 @@
 from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
 from .models import Item, Cloth_type, Client, Orders
-from .serializers import ItemSerializer, Cloth_typeSerializer, ClientSerializer
+from .serializers import ItemSerializer, Cloth_typeSerializer, ClientSerializer, OrdersSerializer
 from rest_framework import status, generics
 from rest_framework.views import APIView
 from django.http import Http404
@@ -17,6 +17,7 @@ class RootApi(generics.GenericAPIView):
             'items': reverse(ItemList.name, request=request),
             'clothtype': reverse(ClothTypeList.name, request=request),
             'client': reverse(ClientList.name, request=request),
+            'orders': reverse(OrdersList.name, request=request),
         })
 
 
@@ -25,7 +26,7 @@ class RootApi(generics.GenericAPIView):
 class ItemList(generics.ListCreateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    name = 'item_list'
+    name = 'item-list'
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
@@ -35,7 +36,7 @@ class ItemList(generics.ListCreateAPIView):
 class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    name = 'item_list'
+    name = 'item-detail'
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
@@ -45,7 +46,7 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
 class ClothTypeList(generics.ListCreateAPIView):
     queryset = Cloth_type.objects.all()
     serializer_class = Cloth_typeSerializer
-    name = 'clothtype_list'
+    name = 'clothtype-list'
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
@@ -55,7 +56,7 @@ class ClothTypeList(generics.ListCreateAPIView):
 class ClothTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cloth_type.objects.all()
     serializer_class = Cloth_typeSerializer
-    name = 'clothtype_detail'
+    name = 'clothtype-detail'
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
@@ -65,7 +66,7 @@ class ClothTypeDetail(generics.RetrieveUpdateDestroyAPIView):
 class ClientList(generics.ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    name = 'client_list'
+    name = 'client-list'
     filter_fields = ['name', 'surname']
     search_fields = ['name', 'surname']
     ordering_fields = ['name', 'surname']
@@ -75,7 +76,27 @@ class ClientList(generics.ListCreateAPIView):
 class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    name = 'client_detail'
+    name = 'client-detail'
+    filter_fields = ['name', 'surname']
+    search_fields = ['name', 'surname']
+    ordering_fields = ['name', 'surname']
+
+
+@permission_classes((IsAdminUser,))
+class OrdersList(generics.ListCreateAPIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
+    name = 'orders-list'
+    filter_fields = ['id_order', 'id_client']
+    search_fields = ['id_order', 'id_client']
+    ordering_fields = ['id_order', 'id_client']
+
+
+@permission_classes((IsAdminUser,))
+class OrdersDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Orders.objects.all()
+    serializer_class = OrdersSerializer
+    name = 'orders-detail'
     filter_fields = ['name', 'surname']
     search_fields = ['name', 'surname']
     ordering_fields = ['name', 'surname']
