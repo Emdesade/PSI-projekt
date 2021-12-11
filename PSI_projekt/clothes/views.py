@@ -1,12 +1,15 @@
+from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
-from .models import Item
-from .serializers import ItemSerializer
-from rest_framework import status
+from .models import Item, Cloth_type, Client, Orders
+from .serializers import ItemSerializer, Cloth_typeSerializer, ClientSerializer
+from rest_framework import status, generics
 from rest_framework.views import APIView
 from django.http import Http404
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 
 # Create your views here.
+@permission_classes((IsAuthenticated,))
 class ItemList(APIView):
     def get(self, request, format=None):
         items = Item.objects.all()
@@ -21,6 +24,7 @@ class ItemList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@permission_classes((IsAdminUser,))
 class ItemDetail(APIView):
     def get_object(self, pk):
         try:
@@ -45,3 +49,27 @@ class ItemDetail(APIView):
         item = self.get_object(pk)
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@permission_classes((IsAuthenticated,))
+class ClothTypeList(generics.ListCreateAPIView):
+    queryset = Cloth_type.objects.all()
+    serializer_class = Cloth_typeSerializer
+
+
+@permission_classes((IsAdminUser,))
+class ClothTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cloth_type.objects.all()
+    serializer_class = Cloth_typeSerializer
+
+
+@permission_classes((IsAdminUser,))
+class ClientList(generics.ListCreateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+
+@permission_classes((IsAdminUser,))
+class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer

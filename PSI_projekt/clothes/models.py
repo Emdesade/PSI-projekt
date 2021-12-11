@@ -43,5 +43,3 @@ class Orders(models.Model):
     id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
     id_item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.id_client
