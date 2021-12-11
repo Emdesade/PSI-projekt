@@ -27,8 +27,8 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):
-    id_client = serializers.SlugRelatedField(queryset=Client.objects.all(), slug_field='id_client')
-    id_item = serializers.SlugRelatedField(queryset=Item.objects.all(), slug_field='id_item')
+    id_client = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='client-detail')
+    id_item = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='item-detail')
 
     class Meta:
         model = Orders
