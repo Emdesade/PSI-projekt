@@ -46,7 +46,7 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
 class ClothTypeList(generics.ListCreateAPIView):
     queryset = Cloth_type.objects.all()
     serializer_class = Cloth_typeSerializer
-    name = 'clothtype-list'
+    name = 'cloth_type-list'
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
@@ -56,7 +56,7 @@ class ClothTypeList(generics.ListCreateAPIView):
 class ClothTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cloth_type.objects.all()
     serializer_class = Cloth_typeSerializer
-    name = 'clothtype-detail'
+    name = 'cloth_type-detail'
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
