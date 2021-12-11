@@ -8,4 +8,5 @@ urlpatterns = [
     path('clothtype/<int:pk>', views.ClothTypeDetail.as_view(), name='clothtype_detail'),
     path('client', views.ClientList.as_view(), name='client_list'),
     path('client/<int:pk>', views.ClientDetail.as_view(), name='client_detail'),
+    path('', views.RootApi.as_view(), name=views.RootApi.name),
 ]
