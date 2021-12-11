@@ -1,63 +1,35 @@
 from rest_framework import serializers
-from .models import Cloth_type, Item, Client
+from .models import Cloth_type, Item, Client, Orders
 
 
-class Cloth_typeSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=True, max_length=45)
+class Cloth_typeSerializer(serializers.HyperlinkedModelSerializer):
+    items = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='item-detail')
 
-    def create(self, validated_data):
-        return Cloth_type.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.name)
-        instance.save()
-        return instance
+    class Meta:
+        model = Cloth_type
+        fields = ['url', 'id_cloth_type', 'name', 'items']
 
 
-class ItemSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=True, max_length=45)
-    serial_number = serializers.CharField(required=True, max_length=45)
-    size = serializers.CharField(required=True, max_length=45)
-    material = serializers.CharField(required=True, max_length=45)
-    price = serializers.CharField(required=True, max_length=45)
-    manufacturer = serializers.CharField(required=True, max_length=45)
-    color = serializers.CharField(required=True, max_length=45)
+class ClientSerializer(serializers.HyperlinkedModelSerializer):
+    orders = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='orders-detail')
 
-    def create(self, validated_data):
-        return Item.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.name = validated_data.get('name', instance.name)
-        instance.serial_number = validated_data.get('serial_number', instance.serial_number)
-        instance.size = validated_data.get('size', instance.size)
-        instance.material = validated_data.get('material', instance.material)
-        instance.price = validated_data.get('price', instance.price)
-        instance.manufacturer = validated_data.get('manufacturer', instance.manufacturer)
-        instance.color = validated_data.get('color', instance.color)
-        instance.save()
-        return instance
+    class Meta:
+        model = Client
+        fields = ['url', 'id_client', 'gender', 'name', 'surname', 'adres', 'email', 'birth_date', 'orders']
 
 
-class ClientSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    gender = serializers.CharField(required=True, max_length=45)
-    name = serializers.CharField(required=True, max_length=45)
-    surname = serializers.CharField(required=True, max_length=45)
-    adres = serializers.CharField(required=True, max_length=45)
-    email = serializers.EmailField(required=True, max_length=254)
-    birth_date = serializers.DateField()
+class ItemSerializer(serializers.HyperlinkedModelSerializer):
+    cloth_type = serializers.SlugRelatedField(queryset=Item.objects.all(), slug_field='name')
 
-    def create(self, validated_data):
-        return Client.objects.create(**validated_data)
+    class Meta:
+        model = Item
+        fields = ['url', 'id_item', 'serial_number', 'size', 'material', 'price', 'manufacturer', 'color', 'cloth_type']
 
-    def update(self, instance, validated_data):
-        instance.gender = validated_data.get('gender', instance.gender)
-        instance.name = validated_data.get('name', instance.name)
-        instance.surname = validated_data.get('surname', instance.surname)
-        instance.adres = validated_data.get('adres', instance.adres)
-        instance.email = validated_data.get('email', instance.email)
-        instance.birth_date = validated_data.get('birth_date', instance.birth_date)
-        instance.save()
-        return instance
+
+class OrdersSerializer(serializers.HyperlinkedModelSerializer):
+    id_client = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='client-detail')
+    id_item = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name='item-detail')
+
+    class Meta:
+        model = Orders
+        fields = ['url', 'id_order', 'id_client', 'id_item']
