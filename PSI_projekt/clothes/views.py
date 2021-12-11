@@ -2,17 +2,14 @@ from rest_framework.decorators import permission_classes
 from rest_framework.response import Response
 from .models import Item, Cloth_type, Client, Orders
 from .serializers import ItemSerializer, Cloth_typeSerializer, ClientSerializer, OrdersSerializer
-from rest_framework import status, generics
-from rest_framework.views import APIView
-from django.http import Http404
+from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.reverse import reverse
 
 
 class RootApi(generics.GenericAPIView):
     name = 'root-api'
-
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         return Response({
             'items': reverse(ItemList.name, request=request),
             'clothtype': reverse(ClothTypeList.name, request=request),
