@@ -55,21 +55,37 @@ class ItemDetail(APIView):
 class ClothTypeList(generics.ListCreateAPIView):
     queryset = Cloth_type.objects.all()
     serializer_class = Cloth_typeSerializer
+    name = 'clothtype_list'
+    filter_fields = ['name']
+    search_fields = ['name']
+    ordering_fields = ['name']
 
 
 @permission_classes((IsAdminUser,))
 class ClothTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cloth_type.objects.all()
     serializer_class = Cloth_typeSerializer
+    name = 'clothtype_detail'
+    filter_fields = ['name']
+    search_fields = ['name']
+    ordering_fields = ['name']
 
 
 @permission_classes((IsAdminUser,))
 class ClientList(generics.ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+    name = 'client_list'
+    filter_fields = ['name', 'surname']
+    search_fields = ['name', 'surname']
+    ordering_fields = ['name', 'surname']
 
 
 @permission_classes((IsAdminUser,))
 class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+    name = 'client_detail'
+    filter_fields = ['name', 'surname']
+    search_fields = ['name', 'surname']
+    ordering_fields = ['name', 'surname']
