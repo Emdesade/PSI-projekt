@@ -19,7 +19,7 @@ class Item(models.Model):
     price = models.FloatField()
     manufacturer = models.CharField(max_length=45)
     color = models.CharField(max_length=45)
-    cloth_type = models.ForeignKey(Cloth_type, on_delete=models.CASCADE)
+    cloth_type = models.ForeignKey(Cloth_type, related_name='items', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -40,6 +40,5 @@ class Client(models.Model):
 
 class Orders(models.Model):
     id_order = models.AutoField(primary_key=True)
-    id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    id_item = models.ForeignKey(Item, on_delete=models.CASCADE)
-
+    id_client = models.ForeignKey(Client, related_name='orders', on_delete=models.CASCADE)
+    id_item = models.ForeignKey(Item, related_name='items', on_delete=models.CASCADE)
