@@ -19,11 +19,12 @@ class ClientSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
-    cloth_type = serializers.SlugRelatedField(queryset=Item.objects.all(), slug_field='name')
+    cloth_type = serializers.SlugRelatedField(queryset=Cloth_type.objects.all(), slug_field='name')
 
     class Meta:
         model = Item
-        fields = ['url', 'id_item', 'serial_number', 'size', 'material', 'price', 'manufacturer', 'color', 'cloth_type']
+        fields = ['url', 'id_item', 'name', 'serial_number', 'size', 'material', 'price', 'manufacturer', 'color',
+                  'cloth_type']
 
 
 class OrdersSerializer(serializers.HyperlinkedModelSerializer):

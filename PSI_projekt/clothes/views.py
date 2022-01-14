@@ -5,10 +5,12 @@ from .serializers import ItemSerializer, Cloth_typeSerializer, ClientSerializer,
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.reverse import reverse
+from rest_framework import permissions
 
 
 class RootApi(generics.GenericAPIView):
     name = 'root-api'
+
     def get(self, request):
         return Response({
             'items': reverse(ItemList.name, request=request),
@@ -27,6 +29,7 @@ class ItemList(generics.ListCreateAPIView):
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
+    permission_classes = [permissions.BasePermission]
 
 
 @permission_classes((IsAdminUser,))
@@ -37,6 +40,7 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
+    permission_classes = [permissions.IsAuthenticated]
 
 
 @permission_classes((IsAuthenticated,))
@@ -47,6 +51,7 @@ class ClothTypeList(generics.ListCreateAPIView):
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
+    permission_classes = [permissions.IsAuthenticated]
 
 
 @permission_classes((IsAdminUser,))
@@ -57,6 +62,7 @@ class ClothTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     filter_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
+    permission_classes = [permissions.IsAuthenticated]
 
 
 @permission_classes((IsAdminUser,))
@@ -67,6 +73,7 @@ class ClientList(generics.ListCreateAPIView):
     filter_fields = ['name', 'surname']
     search_fields = ['name', 'surname']
     ordering_fields = ['name', 'surname']
+    permission_classes = [permissions.IsAdminUser]
 
 
 @permission_classes((IsAdminUser,))
@@ -77,6 +84,7 @@ class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
     filter_fields = ['name', 'surname']
     search_fields = ['name', 'surname']
     ordering_fields = ['name', 'surname']
+    permission_classes = [permissions.IsAdminUser]
 
 
 @permission_classes((IsAdminUser,))
@@ -87,6 +95,7 @@ class OrdersList(generics.ListCreateAPIView):
     filter_fields = ['id_order', 'id_client']
     search_fields = ['id_order', 'id_client']
     ordering_fields = ['id_order', 'id_client']
+    permission_classes = [permissions.IsAuthenticated]
 
 
 @permission_classes((IsAdminUser,))
@@ -94,6 +103,8 @@ class OrdersDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Orders.objects.all()
     serializer_class = OrdersSerializer
     name = 'orders-detail'
-    filter_fields = ['name', 'surname']
-    search_fields = ['name', 'surname']
-    ordering_fields = ['name', 'surname']
+    filter_fields = ['id_client', 'id_item']
+    search_fields = ['id_client', 'id_item']
+    ordering_fields = ['id_client', 'id_item']
+    permission_classes = [permissions.IsAuthenticated]
+
