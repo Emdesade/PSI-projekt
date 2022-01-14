@@ -21,7 +21,7 @@ class Item(models.Model):
     manufacturer = models.CharField(max_length=45)
     color = models.CharField(max_length=45)
     cloth_type = models.ForeignKey(Cloth_type, related_name='items', on_delete=models.CASCADE, null=True)
-
+    owner = models.ForeignKey('auth.User', related_name='user', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name

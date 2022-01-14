@@ -31,6 +31,9 @@ class ItemList(generics.ListCreateAPIView):
     ordering_fields = ['name']
     permission_classes = [permissions.BasePermission]
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 @permission_classes((IsAdminUser,))
 class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -107,4 +110,3 @@ class OrdersDetail(generics.RetrieveUpdateDestroyAPIView):
     search_fields = ['id_client', 'id_item']
     ordering_fields = ['id_client', 'id_item']
     permission_classes = [permissions.IsAuthenticated]
-
