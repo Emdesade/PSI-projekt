@@ -12,11 +12,12 @@ class ItemsTestCase(TestCase):
             price=59.99,
             manufacturer="Nike",
             color="Black",
-            #cloth_type="Hoodie",
-            #owner=1,
+            # cloth_type="Hoodie",
+            # owner=1,
         )
 
     def test_item_creations(self):
+        """Test item creations."""
         self.assertEqual(self.item.name, 'Jordan 2001 MID')
         self.assertEqual(self.item.serial_number, 'S638D9900012')
         self.assertEqual(self.item.size, 42)
@@ -24,18 +25,18 @@ class ItemsTestCase(TestCase):
         self.assertEqual(self.item.price, 59.99)
         self.assertEqual(self.item.manufacturer, 'Nike')
         self.assertEqual(self.item.color, 'Black')
-        #self.assertEqual(self.item.cloth_type, 'Hoodie')
-        #self.assertEqual(self.item.owner, 1)
+        # self.assertEqual(self.item.cloth_type, 'Hoodie')
+        # self.assertEqual(self.item.owner, 1)
 
         self.assertTrue(self.item.name, 'Jordan 2001 MID')
-        self.assertTrue(self.item.serial_number, 'S638D9900012')
+        self.assertTrue(self.item.serial_number, 'S638D9900012S638D9900012')
         self.assertTrue(self.item.size, 42)
         self.assertTrue(self.item.material, 'Mixed')
         self.assertTrue(self.item.price, 59.99)
         self.assertTrue(self.item.manufacturer, 'Nike')
         self.assertTrue(self.item.color, 'Black')
-        #self.assertTrue(self.item.cloth_type, 'Hoodie')
-        #self.assertTrue(self.item.owner, 1)
+        # self.assertTrue(self.item.cloth_type, 'Hoodie')
+        # self.assertTrue(self.item.owner, 1)
 
         self.assertIsInstance(self.item.name, str)
         self.assertIsInstance(self.item.serial_number, str)
@@ -44,5 +45,16 @@ class ItemsTestCase(TestCase):
         self.assertIsInstance(self.item.price, float)
         self.assertIsInstance(self.item.manufacturer, str)
         self.assertIsInstance(self.item.color, str)
-        #self.assertIsInstance(self.item.cloth_type, str)
-        #self.assertIsInstance(self.item.owner, int)
+        # self.assertIsInstance(self.item.cloth_type, str)
+        # self.assertIsInstance(self.item.owner, int)
+
+    def test_str_representation1(self):
+        """Checking the representation of the string."""
+        self.assertEqual(self.item.__str__(), 'Jordan 2001 MID')
+
+    def test_item_count(self):
+        """Number of registered items."""
+        item_count = Item.objects.all().count()
+        self.assertEqual(item_count, 1)
+
+
