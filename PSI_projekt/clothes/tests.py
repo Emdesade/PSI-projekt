@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.test import TestCase
 from .models import Item, Client, Orders, Cloth_type
 
@@ -57,4 +59,47 @@ class ItemsTestCase(TestCase):
         item_count = Item.objects.all().count()
         self.assertEqual(item_count, 1)
 
+
+class ClientTestCase(TestCase):
+    def setUp(self):
+        self.client = Client.objects.create(
+            gender="Kobieta",
+            name="Ewelina",
+            surname="Fanka",
+            adres="Warszawa ul. Stalowa 15/2",
+            email="testmail@gmail.com",
+            birth_date=datetime.date(2022, 1, 15),
+        )
+
+    def test_item_creations(self):
+        """Test Client creations."""
+        self.assertEqual(self.client.gender, 'Kobieta')
+        self.assertEqual(self.client.name, 'Ewelina')
+        self.assertEqual(self.client.surname, 'Fanka')
+        self.assertEqual(self.client.adres, 'Warszawa ul. Stalowa 15/2')
+        self.assertEqual(self.client.email, 'testmail@gmail.com')
+        self.assertEqual(self.client.birth_date, datetime.date(2022, 1, 15))
+
+        self.assertTrue(self.client.gender, 'Kobieta')
+        self.assertTrue(self.client.name, 'Ewelina')
+        self.assertTrue(self.client.surname, 'Fanka')
+        self.assertTrue(self.client.adres, 'Warszawa ul. Stalowa 15/2')
+        self.assertTrue(self.client.email, 'testmail@gmail.com')
+        self.assertTrue(self.client.birth_date, datetime.date(2022, 1, 15))
+
+        self.assertIsInstance(self.client.gender, str)
+        self.assertIsInstance(self.client.name, str)
+        self.assertIsInstance(self.client.surname, str)
+        self.assertIsInstance(self.client.adres, str)
+        self.assertIsInstance(self.client.email, str)
+        self.assertIsInstance(self.client.birth_date, datetime.date)
+
+    def test_str_representation1(self):
+        """Checking the representation of the string."""
+        self.assertEqual(self.client.__str__(), 'testmail@gmail.com')
+
+    def test_item_count(self):
+        """Number of registered items."""
+        client_count = Client.objects.all().count()
+        self.assertEqual(client_count, 1)
 
